@@ -1,0 +1,1076 @@
+<?xml version="1.0" encoding="US-ASCII"?>
+<!-- This template is for creating an Internet Draft using xml2rfc,
+     which is available here: http://xml2rfc.tools.ietf.org. -->
+<!DOCTYPE rfc SYSTEM "rfc2629.dtd" [
+<!-- One method to get references from the online citation libraries.
+     There has to be one entity for each item to be referenced. 
+     An alternate method (rfc include) is described in the references. -->
+		 
+<!ENTITY RFC8329 SYSTEM "http://xml2rfc.tools.ietf.org/public/rfc/bibxml/reference.RFC.8329.xml">
+<!ENTITY RFC8392 SYSTEM "http://xml2rfc.tools.ietf.org/public/rfc/bibxml/reference.RFC.8392.xml">
+<!ENTITY RFC7519 SYSTEM "http://xml2rfc.tools.ietf.org/public/rfc/bibxml/reference.RFC.7519.xml">
+<!ENTITY RFC3688 SYSTEM "http://xml2rfc.tools.ietf.org/public/rfc/bibxml/reference.RFC.3688.xml">
+<!ENTITY RFC7950 SYSTEM "http://xml2rfc.tools.ietf.org/public/rfc/bibxml/reference.RFC.7950.xml">
+<!ENTITY RFC8525 SYSTEM "http://xml2rfc.tools.ietf.org/public/rfc/bibxml/reference.RFC.8525.xml">
+<!ENTITY RFC2119 SYSTEM "http://xml2rfc.tools.ietf.org/public/rfc/bibxml/reference.RFC.2119.xml">
+<!ENTITY I-D.ietf-rats-architecture SYSTEM "http://xml2rfc.tools.ietf.org/public/rfc/bibxml3/reference.I-D.ietf-rats-architecture.xml">
+<!ENTITY I-D.ietf-rats-tpm-based-network-device-attest SYSTEM "http://xml2rfc.tools.ietf.org/public/rfc/bibxml3/reference.I-D.ietf-rats-tpm-based-network-device-attest.xml">
+<!ENTITY I-D.ietf-i2nsf-nsf-monitoring-data-model SYSTEM "http://xml2rfc.tools.ietf.org/public/rfc/bibxml3/reference.I-D.ietf-i2nsf-nsf-monitoring-data-model.xml">
+<!ENTITY I-D.ietf-rats-yang-tpm-charra SYSTEM "http://xml2rfc.tools.ietf.org/public/rfc/bibxml3/reference.I-D.ietf-rats-yang-tpm-charra.xml">
+<!ENTITY I-D.ietf-rats-eat SYSTEM "http://xml2rfc.tools.ietf.org/public/rfc/bibxml3/reference.I-D.ietf-rats-eat.xml">
+]>
+<?xml-stylesheet type='text/xsl' href='rfc2629.xslt' ?>
+<!-- used by XSLT processors -->
+<!-- For a complete list and description of processing instructions (PIs), 
+     please see http://xml2rfc.tools.ietf.org/authoring/README.html. -->
+<!-- Below are generally applicable Processing Instructions (PIs) that most I-Ds might want to use.
+     (Here they are set differently than their defaults in xml2rfc v1.32) -->
+<?rfc strict="yes" ?>
+<!-- give errors regarding ID-nits and DTD validation -->
+<!-- control the table of contents (ToC) -->
+<?rfc toc="yes"?>
+<!-- generate a ToC -->
+<?rfc tocdepth="4"?>
+<!-- the number of levels of subsections in ToC. default: 3 -->
+<!-- control references -->
+<?rfc symrefs="yes"?>
+<!-- use symbolic references tags, i.e, [RFC2119] instead of [1] -->
+<?rfc sortrefs="yes" ?>
+<!-- sort the reference entries alphabetically -->
+<!-- control vertical white space 
+     (using these PIs as follows is recommended by the RFC Editor) -->
+<?rfc compact="yes" ?>
+<!-- do not start each main section on a new page -->
+<?rfc subcompact="no" ?>
+<!-- keep one blank line between list items -->
+<!-- end of list of popular I-D processing instructions -->
+<rfc category="info" docName="draft-yang-i2nsf-trust-enhanced-i2nsf-00" ipr="trust200902">
+  <!-- category values: std, bcp, info, exp, and historic
+     ipr values: full3667, noModification3667, noDerivatives3667
+     you can add the attributes updates="NNNN" and obsoletes="NNNN" 
+     they will automatically be output with "(if approved)" -->
+
+  <!-- ***** FRONT MATTER ***** -->
+
+  <front>
+    <!-- The abbreviated title is used in the page header - it is only necessary if the 
+         full title is longer than 39 characters -->
+
+    <title abbrev="Abbreviated Title">Trust Enhanced I2NSF</title>
+
+    <!-- add 'role="editor"' below for the editors if appropriate -->
+
+    <!-- Another author who claims to be an editor -->
+
+    <author fullname="Penglin Yang" initials="P.Y." role="editor" surname="Yang">
+      <organization>China Mobile</organization>
+
+      <address>
+        <postal>
+          <street>32 Xuanwumen West Street, Xicheng District</street>
+
+          <!-- Reorder these if your country does things differently -->
+
+          <city>Beijing</city>
+
+          <region></region>
+
+          <code>100053</code>
+
+          <country>China</country>
+        </postal>
+
+        <phone></phone>
+
+        <email>yangpenglin@chinamobile.com</email>
+
+        <!-- uri and facsimile elements may also be added -->
+      </address>
+    </author>
+	<author fullname="Meilin Chen" initials="M.C." role="editor" surname="Chen">
+      <organization>China Mobile</organization>
+
+      <address>
+        <postal>
+          <street>32 Xuanwumen West Street, Xicheng District</street>
+
+          <!-- Reorder these if your country does things differently -->
+
+          <city>Beijing</city>
+
+          <region></region>
+
+          <code>100053</code>
+
+          <country>China</country>
+        </postal>
+
+        <phone></phone>
+
+        <email>chenmeiling@chinamobile.com</email>
+
+        <!-- uri and facsimile elements may also be added -->
+      </address>
+    </author>
+	<author fullname="Li Su" initials="L.S." role="editor" surname="Su">
+      <organization>China Mobile</organization>
+
+      <address>
+        <postal>
+          <street>32 Xuanwumen West Street, Xicheng District</street>
+
+          <!-- Reorder these if your country does things differently -->
+
+          <city>Beijing</city>
+
+          <region></region>
+
+          <code>100053</code>
+
+          <country>China</country>
+        </postal>
+
+        <phone></phone>
+
+        <email>suli@chinamobile.com</email>
+
+        <!-- uri and facsimile elements may also be added -->
+      </address>
+    </author>
+
+    <date month="December" year="2021" />
+
+    <!-- If the month and year are both specified and are the current ones, xml2rfc will fill 
+         in the current day for you. If only the current year is specified, xml2rfc will fill 
+	 in the current day and month for you. If the year is not the current one, it is 
+	 necessary to specify at least a month (xml2rfc assumes day="1" if not specified for the 
+	 purpose of calculating the expiry date).  With drafts it is normally sufficient to 
+	 specify just the year. -->
+
+    <!-- Meta-data Declarations -->
+
+    <area>General</area>
+
+    <workgroup>I2NSF Working Group</workgroup>
+
+    <!-- WG name at the upperleft corner of the doc,
+         IETF is fine for individual submissions.  
+	 If this element is not present, the default is "Network Working Group",
+         which is used by the RFC Editor as a nod to the history of the IETF. -->
+
+    <keyword>trust enhanced I2NSF</keyword>
+
+    <!-- Keywords will be incorporated into HTML output
+         files in a meta tag but they have no effect on text or nroff
+         output. If you submit your draft to the RFC Editor, the
+         keywords will be used for the search engine. -->
+
+    <abstract>
+      <t>This document describes the architecture of Trust Enhanced I2NSF. In this architecture, technologies like TPM <xref target="tpm12"></xref><xref target="tpm20"></xref> and <xref target="TCGRoT"></xref> will act as RoT (root of trust), integrity measurement and remote attestation will be used to enhance the trustworthiness of NSF. Relevant interfaces of Trust Enhanced I2NSF will also be illustrated in this document.</t>
+    </abstract>
+  </front>
+
+  <middle>
+    <section anchor="intro" title="Introduction">
+      <t>NSF is always used in remote scenarios, in which it is hard to guarantee the deployment environment is security and the NSF is properly deployed. If the deployment environment or the NSF is compromised, the behavior and the feedback of NSF cannot be trusted.</t>
+			<t>Trusted computing technology like TPM, TEE<xref target="TEE"></xref> could provide a root of trust based on hardware in deployment environment. Trusted computing hardware usually retains a pair of root key, which could be used to sign signature for the measurement of development environment and the NSF image. Then the signed result will be sent to the NSF manager to estimate if the NSF is well deployed.</t>
+			<t>The RATs architecture<xref target="I-D.ietf-rats-architecture"></xref> has defined this remote attestation process which could be introduced to I2NSF. Since the RATs architecture is a general architecture, specific interface and implementation still need to be determined in I2NSF. This draft aims to create a unified trust enhanced I2NSF architecture to promote the security of NSF</t>
+      
+    </section>
+		
+		<section anchor="term" title="Terminology">
+			<section title="Terms">
+				<t>RATs: Remote Attestation Procedure</t>
+				<t>RoT: Root of Trust</t>
+				<t>TPM: Trusted platform module</t>
+				<t>TEE: Trust Execution Environment</t>
+			</section>
+			<section title="Requirements Language">
+        <t>The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT",
+        "SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" in this
+        document are to be interpreted as described in <xref
+        target="RFC2119">RFC 2119</xref>.</t>
+      </section>
+		</section>
+		
+		<section anchor="scope" title="Scope and Motivation">
+			<section title="Scope">
+				<t>The scope of this draft mainly focuses on the expanded interfaces of trust enhanced I2NSF. The specific of how to implement measurement or how to make remote attestation evidence is out of scope.</t>
+			</section>
+			<section title="Motivation">
+				<t>The architecture of I2NSF <xref target="RFC8329"></xref> aims to provide network security functions to network users. Often, the users are in remote environment, and the platform to deploy these network security functions may not be trusted. As a consequence, this will bring several severe threats to the NSF. The first one is malfunction of NSF. The inappropriate deployment of NSF or the defective platform will affect the process of NSF directly. The second threat is the leak of policy rules and core asset of security knowledge. If there has malware in the remote environment, it will be hard to prevent the leakage. The third threat is the potential spoofing attack to the NSF architecture. Adversary could use the compromised NSF to feedback spoofing information or other attacking information to attack or penetrate the NSF architecture. </t>
+				<t>The solution of these threats is also straight, which is using remote attestation to make sure the remote platform is trusted and the NSF is well deployed. The RATs group in IETF defines architecture and some specifications of remote attestation procedure. However brings the RATs in I2NSF still needs some work. First, need to define the trsut enhanced architecture. Second, need to refer the appropriate specifications defined in RATs to create trust enhanced NSF interfaces. Third, need to cover the heterogeneous architecture of specific trust architecture like TPM and TEE.</t>
+			</section>
+		</section>
+		
+		<section anchor="information_model" title="Information Model">
+			<section title="Architecture of Trust Enhanced I2NSF">
+				<figure align="center" anchor="xml_happy" title="architecture of Trust Enhanced I2NSF">
+					<artwork align="center"><![CDATA[
++--------------+                         +--------------+
+|              |                         |              |
+|   NSF User   |           +-------------+   Endorser   |
+|              |           |             |              |
++------+-------+           |             +--------------+
+       |                   |
+       |                   |
+       +-------------------+
+       |
+       |
++------+-------+                         +--------------+
+|              |                         |              |
+|   Security   +-------------------------+  Developer's |
+|  Controller  |                         |  Mgnt System |
++-+----------+-+                         +-+----------+-+
+  | Verifier/|                             | Reference|
+  | Relying  |                             |   Value  |
+  | Party    |                             | Provider |
+  +----+-----+                             +----------+
+       |
+       |
+       +-------------------+---------------------+
+       |                   |                     |
++------+-------+    +------+-------+      +------+-------+
+|              |    |              |      |              |
+|     NSF1     +    |     NSF2     |      |     NSFn     |
+|              |    |              |      |              |
++--+--------+--+    +--+--------+--+      +--+--------+--+
+   |   RoT  |          |   RoT  |            |   RoT  |
+   |        |          |        |            |        |
+   +--------+          +--------+            +--------+
+            ]]></artwork>
+				</figure>
+				<t>As shown in figure one is the trust enhanced I2NSF architecture. In this architecture, several new components are introduced to NSF. The first component is RoT which is deployed in the hardware platform of NSF. The second component is Verifier/Relying Party, which is deployed as part of Security Controller. This component is in charge of verifying if the attestation value is complied with the reference value. The third component is the Reference Value Provider, which will bring the reference value of NSF image and deployment environment to Security Controller. The fourth component is Endorser, which will provie the endorsement of RoT. And the verifier could use Endorser to verify the endorsement status of RoT.</t>
+			</section>
+			
+			<section title="Root of Trust">
+				<t>Root of Trust is a hardware-based component that could provide information and certain function that cannot be stolen, tampered, or repudiation. RoT MUST be deployed in the NSF hardware platform. The NSF with RoT composes the rule of attester.</t>
+				<t>The architecture of specific RoT is out of scope of this document. But in order to clarify RoT more clearly, the following segment uses TPM as an example to illustrate. TPM keeps EK(Endorsement Key ) to identify its identity. EK is an asymmetric key pair, which will never expose its secret key to public. TPM also derives certain AIKs(Attestation Identity Key) from EK to avoid the exposure of TPM&apos;s real identity(EK). Meanwhile, TPM contains a reference Hash value of the boot component of platform. When launching a remote attestation procedure, the TPM will first measure the boot component of platform. Based on the trust policy the TPM will choose if trust the boot component and transfer the system control to the boot component. The boot component then will measure the operating system kernel and compare it to the reference value, and so on. During this trusted measurement process, the TPM will record the measurement Hash result in a series of registers called PCRs. If a remote attestation procedure is initiated, the measurement Hash result will be signed by AIK. In the end, remote attestation procedure will send this signed Hash result and measurement result to the verifier. The specific procedure could refer to<xref target="I-D.ietf-rats-tpm-based-network-device-attest"></xref>, which illustrates how integrity verification works inside a device.</t>
+			</section>
+			
+			<section title="Verifier/Relying Party">
+				<t>The Verifier/Relying Party is deployed in Security Controller. In the original architecture of RATs, Verifier and Relying Party could be different components. Verifier is in charge of verifying the remote attestation results from attester. The Relying Party is in charge of appraising the verification result from Verifier. This means that the Relying Party does not have to know the detail of remote attestation result and could only focus on the final verification result and make policies. While in NSF, both the role of Verifier and Relying Party will be included in Security Controller to reduce the complexity.</t>
+			</section>
+			
+			<section title="Reference Value Provider">
+				<t>The Developer&apos;s Mgnt System is in charge of providing reference value of NSF and the deployment platform. The reference value will be conveyed to Security Controller as the benchmark when verifying remote attestation value from attester.</t>
+			</section>
+			
+			<section title="Endorser">
+				<t>The Endorser is in charge of providing endorsement to RoT, both EK and AIK are related to Endorser. The communication between RoT and Endorser is out of scope of this document, but the Security Controller needs to communicate with Endorser to verify remote attestation message.</t>
+			</section>
+			
+		</section>
+
+		<section anchor="data_model" title="Data Model of Trust Enhanced I2NSF">
+			<t>Two interfaces are involved in trust enhanced I2NSF, Trust Enhanced NSF Monitoring Interface and Trust Enhanced Registration Interface.</t>
+			
+			<section title="Trust Enhanced NSF Monitoring interface">
+				<t>The TENMI (Trust Enhanced NSF Monitoring Interface) focuses on the remote attestation procedure between NSF and security controller. This interface will be an extended feature of NSF Monitoring Interface and will fully comply with NSF Monitoring Interface<xref target="I-D.ietf-i2nsf-nsf-monitoring-data-model"></xref>. Based on the information transmission type, the TENMI has three Yang types: system events, system logs and RPC. The system event is responsible for the NSF event that will trigger the remote attestation of NSF. And the event could be platform booting, measurement result change, NSF deploy, etc. The system logs is responsible for the periodic remote attestation. The third type is RPC in where the Verifier (Security Controller) will challenge the attester (NSF) for its trustworthiness initiatively. </t>
+				<t>At present, the RoT type now are split in two category, one is TPM-based and the other is general TEE-based like Trust Zone. It can be expected that other trsuted computing architectures like Intel SGX <xref target="SGX"></xref> may also be involved in the near future. And also the TPM-based RoT is split in TPM12 and TPM20 versions respectively. When design this interface with TPM-based RoT, this document tries to refer to the existing document<xref target="I-D.ietf-rats-yang-tpm-charra"></xref> as much as possible to avoid unnecessary alignment work. And about the general TEE-based RoT, this document refers to the EAT document<xref target="I-D.ietf-rats-eat"></xref> and uses string type to express JWT<xref target="RFC7519"></xref>or CWT <xref target="RFC8392"></xref>.</t>
+				
+					<section  title="Yang Tree Diagram of Trust Enhanced NSF Monitoring Interface">
+						<t>The Yang tree of Trust Enhanced NSF Monitoring Interface is shown below.</t>
+						<figure>
+							<artwork><![CDATA[
+module: ietf-i2nsf-nsf-trust-enhanced-monitoring
+  rpcs:
+    +---x nsf-challenge-response-attestation
+       +---w input
+       |  +---w (RoT-type)?
+       |     +--:(TPM12)
+       |     |  +---w tpm12-rpc
+       |     |     +---w pcr-index*          pcr
+       |     |     +---w nonce-value         binary
+       |     |     +---w certificate-name*   tpm:certificate-name-ref {tpm:tpms}?
+       |     +--:(TPM20)
+       |     |  +---w tpm20-pcr
+       |     |     +---w nonce-value            binary
+       |     |     +---w tpm20-pcr-selection* []
+       |     |     |  +---w tpm20-hash-algo?   identityref
+       |     |     |  +---w pcr-index*         pcr
+       |     |     +---w certificate-name*      tpm:certificate-name-ref {tpm:tpms}?
+       |     +--:(TEE-general)
+       |        +---w nonce?              binary
+       |        +---w certificate-name?   string
+       +--ro output
+          +--ro (RoT-type)?
+             +--:(TPM12)
+             |  +--ro tpm12-log
+             |     +--ro name?                    string
+             |     +--ro up-time?                 uint32
+             |     +--ro (attested_event_log_type)
+             |        +--:(bios) {bios}?
+             |        |  +--ro bios-event-logs
+             |        |     +--ro bios-event-entry* [event-number]
+             |        |        +--ro event-number    uint32
+             |        |        +--ro event-type?     uint32
+             |        |        +--ro pcr-index?      pcr
+             |        |        +--ro digest-list* [hash-alog]
+             |        |        |  +--ro hash-algo?   identityref
+             |        |        |  +--ro digest*      binary
+             |        |        +--ro event-size?     uint32
+             |        |        +--ro event-data*     uint8
+             |        +--:(ima) {ima}?
+             |        |  +--ro ima-event-logs
+             |        |     +--ro ima-event-entry* [event-number]
+             |        |        +--ro event-number               uint64
+             |        |        +--ro ima-template?              string
+             |        |        +--ro filename-hint?             string
+             |        |        +--ro filedata-hash?             binary
+             |        |        +--ro filedata-hash-algorithm?   string
+             |        |        +--ro template-hash-algorithm?   string
+             |        |        +--ro template-hash?             binary
+             |        |        +--ro pcr-index?                 pcr
+             |        |        +--ro signature?                 binary
+             |        +--:(netequip_boot) {netequip_boot}?
+             |           +--ro boot-event-logs
+             |              +--ro boot-event-entry* [event-number]
+             |                 +--ro event-number               uint64
+             |                 +--ro ima-template?              string
+             |                 +--ro filename-hint?             string
+             |                 +--ro filedata-hash?             binary
+             |                 +--ro filedata-hash-algorithm?   string
+             |                 +--ro template-hash-algorithm?   string
+             |                 +--ro template-hash?             binary
+             |                 +--ro pcr-index?                 pcr
+             |                 +--ro signature?                 binary
+             +--:(TPM20)
+             |  +--ro tpm20-log
+             |     +--ro name?                    string
+             |     +--ro up-time?                 uint32
+             |     +--ro (attested_event_log_type)
+             |        +--:(bios) {bios}?
+             |        |  +--ro bios-event-logs
+             |        |     +--ro bios-event-entry* [event-number]
+             |        |        +--ro event-number    uint32
+             |        |        +--ro event-type?     uint32
+             |        |        +--ro pcr-index?      pcr
+             |        |        +--ro digest-list* [hash-alog]
+             |        |        |  +--ro hash-algo?   identityref
+             |        |        |  +--ro digest*      binary
+             |        |        +--ro event-size?     uint32
+             |        |        +--ro event-data*     uint8
+             |        +--:(ima) {ima}?
+             |        |  +--ro ima-event-logs
+             |        |     +--ro ima-event-entry* [event-number]
+             |        |        +--ro event-number               uint64
+             |        |        +--ro ima-template?              string
+             |        |        +--ro filename-hint?             string
+             |        |        +--ro filedata-hash?             binary
+             |        |        +--ro filedata-hash-algorithm?   string
+             |        |        +--ro template-hash-algorithm?   string
+             |        |        +--ro template-hash?             binary
+             |        |        +--ro pcr-index?                 pcr
+             |        |        +--ro signature?                 binary
+             |        +--:(netequip_boot) {netequip_boot}?
+             |           +--ro boot-event-logs
+             |              +--ro boot-event-entry* [event-number]
+             |                 +--ro event-number               uint64
+             |                 +--ro ima-template?              string
+             |                 +--ro filename-hint?             string
+             |                 +--ro filedata-hash?             binary
+             |                 +--ro filedata-hash-algorithm?   string
+             |                 +--ro template-hash-algorithm?   string
+             |                 +--ro template-hash?             binary
+             |                 +--ro pcr-index?                 pcr
+             |                 +--ro signature?                 binary
+             +--:(TEE-general)
+                +--ro (token-type)?
+                   +--:(cwt)
+                   |  +--ro eat-header-cwt?      string
+                   |  +--ro eat-payload-cwt?     string
+                   |  +--ro eat-signature-cwt?   string
+                   +--:(jwt)
+                      +--ro eat-header-jwt?      string
+                      +--ro eat-payload-jwt?     string
+                      +--ro eat-signature-jwt?   string
+
+  notifications:
+    +---n i2nsf-trust-enhanced-event
+    |  +--ro hardware-type                    string
+    |  +--ro operating-system-type            string
+    |  +--ro acquisition-method?              identityref
+    |  +--ro emission-type?                   identityref
+    |  +--ro dampening-type?                  identityref
+    |  +--ro user                             string
+    |  +--ro group*                           string
+    |  +--ro ip-address                       inet:ip-address
+    |  +--ro authentication?                  identityref
+    |  +--ro message?                         string
+    |  +--ro vendor-name?                     string
+    |  +--ro nsf-name?                        union
+    |  +--ro severity?                        severity
+    |  +--ro (RoT-type)?
+    |     +--:(TPM12)
+    |     |  +--ro tpm12-nsf-rats {taa:tpm12}?
+    |     |     +--ro certificate-name    certificate-name-ref
+    |     |     +--ro up-time?            uint32
+    |     |     +--ro TPM_QUOTE2?         binary
+    |     +--:(TPM20)
+    |     |  +--ro tpm20-nsf-rats {taa:tpm20}?
+    |     |     +--ro certificate-name       certificate-name-ref
+    |     |     +--ro TPMS_QUOTE_INFO        binary
+    |     |     +--ro quote-signature?       binary
+    |     |     +--ro up-time?               uint32
+    |     |     +--ro unsigned-pcr-values* []
+    |     |        +--ro tpm20-hash-algo?   identityref
+    |     |        +--ro pcr-values* [pcr-index]
+    |     |           +--ro pcr-index    pcr
+    |     |           +--ro pcr-value?   binary
+    |     +--:(TEE-general)
+    |        +--ro (token-type)?
+    |           +--:(cwt)
+    |           |  +--ro eat-header-cwt?      string
+    |           |  +--ro eat-payload-cwt?     string
+    |           |  +--ro eat-signature-cwt?   string
+    |           +--:(jwt)
+    |              +--ro eat-header-jwt?      string
+    |              +--ro eat-payload-jwt?     string
+    |              +--ro eat-signature-jwt?   string
+    +---n i2nsf-trsut-enhanced-log
+       +--ro message?                         string
+       +--ro vendor-name?                     string
+       +--ro nsf-name?                        union
+       +--ro severity?                        severity
+       +--ro (RoT-type)?
+          +--:(TPM12)
+          |  +--ro tpm12-log
+          |     +--ro name?                    string
+          |     +--ro up-time?                 uint32
+          |     +--ro (attested_event_log_type)
+          |        +--:(bios) {bios}?
+          |        |  +--ro bios-event-logs
+          |        |     +--ro bios-event-entry* [event-number]
+          |        |        +--ro event-number    uint32
+          |        |        +--ro event-type?     uint32
+          |        |        +--ro pcr-index?      pcr
+          |        |        +--ro digest-list* [hash-alog]
+          |        |        |  +--ro hash-algo?   identityref
+          |        |        |  +--ro digest*      binary
+          |        |        +--ro event-size?     uint32
+          |        |        +--ro event-data*     uint8
+          |        +--:(ima) {ima}?
+          |        |  +--ro ima-event-logs
+          |        |     +--ro ima-event-entry* [event-number]
+          |        |        +--ro event-number               uint64
+          |        |        +--ro ima-template?              string
+          |        |        +--ro filename-hint?             string
+          |        |        +--ro filedata-hash?             binary
+          |        |        +--ro filedata-hash-algorithm?   string
+          |        |        +--ro template-hash-algorithm?   string
+          |        |        +--ro template-hash?             binary
+          |        |        +--ro pcr-index?                 pcr
+          |        |        +--ro signature?                 binary
+          |        +--:(netequip_boot) {netequip_boot}?
+          |           +--ro boot-event-logs
+          |              +--ro boot-event-entry* [event-number]
+          |                 +--ro event-number               uint64
+          |                 +--ro ima-template?              string
+          |                 +--ro filename-hint?             string
+          |                 +--ro filedata-hash?             binary
+          |                 +--ro filedata-hash-algorithm?   string
+          |                 +--ro template-hash-algorithm?   string
+          |                 +--ro template-hash?             binary
+          |                 +--ro pcr-index?                 pcr
+          |                 +--ro signature?                 binary
+          +--:(TPM20)
+          |  +--ro tpm20-log
+          |     +--ro name?                    string
+          |     +--ro up-time?                 uint32
+          |     +--ro (attested_event_log_type)
+          |        +--:(bios) {bios}?
+          |        |  +--ro bios-event-logs
+          |        |     +--ro bios-event-entry* [event-number]
+          |        |        +--ro event-number    uint32
+          |        |        +--ro event-type?     uint32
+          |        |        +--ro pcr-index?      pcr
+          |        |        +--ro digest-list* [hash-alog]
+          |        |        |  +--ro hash-algo?   identityref
+          |        |        |  +--ro digest*      binary
+          |        |        +--ro event-size?     uint32
+          |        |        +--ro event-data*     uint8
+          |        +--:(ima) {ima}?
+          |        |  +--ro ima-event-logs
+          |        |     +--ro ima-event-entry* [event-number]
+          |        |        +--ro event-number               uint64
+          |        |        +--ro ima-template?              string
+          |        |        +--ro filename-hint?             string
+          |        |        +--ro filedata-hash?             binary
+          |        |        +--ro filedata-hash-algorithm?   string
+          |        |        +--ro template-hash-algorithm?   string
+          |        |        +--ro template-hash?             binary
+          |        |        +--ro pcr-index?                 pcr
+          |        |        +--ro signature?                 binary
+          |        +--:(netequip_boot) {netequip_boot}?
+          |           +--ro boot-event-logs
+          |              +--ro boot-event-entry* [event-number]
+          |                 +--ro event-number               uint64
+          |                 +--ro ima-template?              string
+          |                 +--ro filename-hint?             string
+          |                 +--ro filedata-hash?             binary
+          |                 +--ro filedata-hash-algorithm?   string
+          |                 +--ro template-hash-algorithm?   string
+          |                 +--ro template-hash?             binary
+          |                 +--ro pcr-index?                 pcr
+          |                 +--ro signature?                 binary
+          +--:(TEE-general)
+             +--ro (token-type)?
+                +--:(cwt)
+                |  +--ro eat-header-cwt?      string
+                |  +--ro eat-payload-cwt?     string
+                |  +--ro eat-signature-cwt?   string
+                +--:(jwt)
+                   +--ro eat-header-jwt?      string
+                   +--ro eat-payload-jwt?     string
+                   +--ro eat-signature-jwt?   string							
+							]]></artwork>
+						</figure>
+					</section>
+					
+					
+					<section title="Yang Data Model of Trust Enhanced NSF Monitoring Interface">
+						<t>The Yang Model of Trust Enhanced NSF Monitoring Interface is shown below.</t>
+						<figure>
+							<artwork><![CDATA[
+module ietf-i2nsf-nsf-trust-enhanced-monitoring {
+    yang-version 1.1;
+    namespace
+        "urn:ietf:params:xml:ns:yang:ietf-i2nsf-nsf-trust-enhanced-monitoring";
+    prefix
+        nsftemi;
+    import ietf-i2nsf-nsf-monitoring{
+        prefix nsfmi;
+        reference
+            "reference of nsf monitoring interface";
+    }
+    import ietf-tcg-algs{
+        prefix taa;
+    }
+    import ietf-tpm-remote-attestation{
+        prefix tpm;
+    }
+    organization
+        "IETF I2NSF (Interface to Network Security Functions) Working Group";
+    contact
+        "WG Web: <http://tools.ietf.org/wg/i2nsf>
+        WG List: <mailto:i2nsf@ietf.org>
+
+        Editor: Penglin Yang
+        <mailto:yangpenglin@chinamobile.com>";
+
+    description
+        "This module is a YANG module for I2NSF NSF Trust Enhanced Monitoring.";
+        
+    identity RoT-type{
+        description
+            "RoT have different types, like TPM, TEE, SGX, etc.";
+    }    
+    identity certificate-name-ref{
+		description
+			"refer to tpm";
+	}
+	identity TPM12{
+		description
+			"RoT type is TPM1.2";
+	}
+	identity TPM20{
+		description
+			"RoT type is TPM2.0";
+	}
+	identity TEE-general{
+		description
+			"RoT type is TEE general";
+	}
+	identity cwt{
+		description
+			"cbor web token for remote attestation";
+	}
+	identity jwt{
+		description
+			"json web token for remote attestation";
+	}
+        
+    grouping nsf-remote-attestation{
+        choice RoT-type{
+            case TPM12{
+				container tpm12-nsf-rats{
+                	if-feature "taa:tpm12";
+                	description
+                      "since this message was triggered by event, so there is no input 
+                      from RPC. The pcr value is provided by device automatically, the
+                      nonce value NEED to be replaced by the event time";
+	            	uses tpm:certificate-name-ref;
+					uses tpm:tpm12-attestation;
+				}    
+            }
+            case TPM20{
+				container tpm20-nsf-rats{
+                	if-feature "taa:tpm20";
+                	description
+                      "since this message was triggered by event, so there is no input 
+                      from RPC. The pcr value is provided by device automatically, the
+                      nonce value NEED to be repalced by the event time";
+                	uses tpm:certificate-name-ref;
+					uses tpm:tpm20-attestation;
+				}
+            }            
+            case TEE-general{
+                description
+                    "if the RoT is not TPM, or not specify the detail format, then uses
+                    EAT as the reference of the attestation result at present. The 
+                    information includes: token-id; time-stamp; nonce; hardware-version; 
+                    software-description-version; security-level-claim; secure-boot-claim;
+                    including-keys; location-claim; uptime-claim; boot-seed-claim;
+                    intended-use-claim; profile-claim; software-manifest-claim; 
+                    software-evidence-claim";
+               	//how describe cwt or jwt in Yang, string?
+				choice token-type{
+                    case cwt{
+                        leaf eat-header-cwt{
+                            type string;
+                        }
+                        leaf eat-payload-cwt{
+                            type string;
+                        }
+                        leaf eat-signature-cwt{
+                            type string;
+                        }
+                    }
+                    case jwt{
+                        leaf eat-header-jwt{
+                            type string;
+                        }
+                        leaf eat-payload-jwt{
+                            type string;
+                        }
+                        leaf eat-signature-jwt{
+                            type string;
+                        }
+                    }
+                }
+            }
+        }
+    }    
+    grouping TEE-general-log{
+        description
+            "describe the TEE general log.";
+        choice token-type{
+        	case cwt{
+            	leaf eat-header-cwt{
+                	type string;
+                }
+                leaf eat-payload-cwt{
+                	type string;
+                }
+                leaf eat-signature-cwt{
+                	type string;
+                }
+            }
+            case jwt{
+            	leaf eat-header-jwt{
+                	type string;
+                }
+                leaf eat-payload-jwt{
+                	type string;
+                }
+                leaf eat-signature-jwt{
+                	type string;
+                }
+            }
+        }
+	}
+    
+    grouping remote-attestation-log{
+        description
+            "describe different kind of log";
+        choice RoT-type{
+            case TPM12{
+                description
+                    "log recorded under the rule of TPM12";
+				container tpm12-log{
+					uses tpm:tpm-name;
+					uses tpm:node-uptime;
+					uses tpm:event-logs;
+				}
+            }
+            case TPM20{
+                description
+                    "log recorded under the rule of TPM20";
+                container tpm20-log{
+					uses tpm:tpm-name;
+					uses tpm:node-uptime;
+					uses tpm:event-logs;
+				}               
+            }
+            case TEE-general{
+                description
+                    "log recorded under the rule of EAT";
+                uses TEE-general-log;        
+            }
+        }
+    }
+    
+    notification i2nsf-trust-enhanced-event{
+        description
+            "Notification for I2NSF trust enhanced Event.";
+
+        leaf hardware-type{
+            mandatory true;
+            type string;
+        }
+        leaf operating-system-type{
+            mandatory true;
+            type string;
+        }
+        uses nsfmi:characteristics;
+        uses nsfmi:i2nsf-system-event-type-content; 
+        uses nsfmi:common-monitoring-data; 
+        uses nsftemi:nsf-remote-attestation;
+    }
+       
+    notification i2nsf-trsut-enhanced-log{
+        description 
+            "This notification is for integrity measurement log, 
+						which does not have to be responsed immediately";
+        uses nsfmi:common-monitoring-data;
+        uses remote-attestation-log; 
+    }
+    
+    rpc nsf-challenge-response-attestation{
+        description
+            "this is the unified rpc for trust enhanced nsf";
+        input{
+            choice RoT-type{
+                case TPM12{
+                    container tpm12-rpc{
+						uses tpm:tpm12-pcr-selection;
+                    	uses tpm:nonce;
+                    	leaf-list certificate-name {
+                        	if-feature "tpm:tpms";
+                        	type tpm:certificate-name-ref;
+                        	must "/tpm:rats-support-structures/tpm:tpms"
+                            	+ "/tpm:tpm[tpm:firmware-version='taa:tpm12']"
+                            	+ "/tpm:certificates/"
+                            	+ "/tpm:certificate[name=current()]" {
+                            	error-message "Not an available TPM1.2 AIK certificate.";
+                        	}
+                        	description
+                           		"When populated, the RPC will only get a Quote for the
+                        	    TPMs associated with these certificate(s).";
+                    	}
+					}
+                }
+                case TPM20{
+					container tpm20-pcr{
+                    	uses tpm:nonce;
+                    	uses tpm:tpm20-pcr-selection;
+                    	leaf-list certificate-name {
+                        	if-feature "tpm:tpms";
+                        	type tpm:certificate-name-ref;
+                        	must "/tpm:rats-support-structures/tpm:tpms"
+                            	+ "/tpm:tpm[tpm:firmware-version='taa:tpm20']"
+                            	+ "/tpm:certificates/"
+                            	+ "/tpm:certificate[name=current()]" {
+                            	error-message "Not an available TPM2.0 AIK certificate.";
+                        	}
+                    	description
+                        	"When populated, the RPC will only get a Quote for the
+                        	TPMs associated with the certificates.";
+                    	}
+					}
+                }
+                case TEE-general{
+                    description
+                        "there is no standard to reference";
+                    leaf nonce{
+                        type binary;
+                    }
+                    leaf certificate-name{
+                        type string;
+                    }    
+                }
+            }
+        }
+        output{
+            uses remote-attestation-log;
+        }
+    }
+} 				
+							]]></artwork>
+						</figure>
+					</section>
+			</section>
+			
+			<section title="Trust Enhanced Registration interface">
+				<t>The reference value of a NSF needs to be conveyed by trust enhanced registration interface. The interface works between Security Controller and Developer&apos;s Management System. (One trivial thing needs to point out is that when refer to event-logs in ietf-tpm-remote-attestation in data node, the list of &quot;digest-list&quot; needs to define a key value. This condition determines future alignment with <xref target="I-D.ietf-rats-yang-tpm-charra"></xref>. )</t>
+				<section title="Yang Tree Diagram of Trust Enhanced Registration interface">
+					<figure>
+						<artwork><![CDATA[
+module: ietf-i2nsf-nsf-trust-enhanced-registration-interface
+  +--rw reference-value-register
+     +--rw nsf-name                         string
+     +--rw hardware-type                    string
+     +--rw operating-system-type            string
+     +--rw (RoT-type)?
+        +--:(TPM12)
+        |  +--rw tpm12-ref
+        |     +--rw (attested_event_log_type)
+        |        +--:(bios) {bios}?
+        |        |  +--rw bios-event-logs
+        |        |     +--rw bios-event-entry* [event-number]
+        |        |        +--rw event-number    uint32
+        |        |        +--rw event-type?     uint32
+        |        |        +--rw pcr-index?      pcr
+        |        |        +--rw digest-list* [hash-alog]
+        |        |        |  +--rw hash-algo?   identityref
+        |        |        |  +--rw digest*      binary
+        |        |        +--rw event-size?     uint32
+        |        |        +--rw event-data*     uint8
+        |        +--:(ima) {ima}?
+        |        |  +--rw ima-event-logs
+        |        |     +--rw ima-event-entry* [event-number]
+        |        |        +--rw event-number               uint64
+        |        |        +--rw ima-template?              string
+        |        |        +--rw filename-hint?             string
+        |        |        +--rw filedata-hash?             binary
+        |        |        +--rw filedata-hash-algorithm?   string
+        |        |        +--rw template-hash-algorithm?   string
+        |        |        +--rw template-hash?             binary
+        |        |        +--rw pcr-index?                 pcr
+        |        |        +--rw signature?                 binary
+        |        +--:(netequip_boot) {netequip_boot}?
+        |           +--rw boot-event-logs
+        |              +--rw boot-event-entry* [event-number]
+        |                 +--rw event-number               uint64
+        |                 +--rw ima-template?              string
+        |                 +--rw filename-hint?             string
+        |                 +--rw filedata-hash?             binary
+        |                 +--rw filedata-hash-algorithm?   string
+        |                 +--rw template-hash-algorithm?   string
+        |                 +--rw template-hash?             binary
+        |                 +--rw pcr-index?                 pcr
+        |                 +--rw signature?                 binary
+        +--:(TPM20)
+        |  +--rw tpm20-ref
+        |     +--rw (attested_event_log_type)
+        |        +--:(bios) {bios}?
+        |        |  +--rw bios-event-logs
+        |        |     +--rw bios-event-entry* [event-number]
+        |        |        +--rw event-number    uint32
+        |        |        +--rw event-type?     uint32
+        |        |        +--rw pcr-index?      pcr
+        |        |        +--rw digest-list* [hash-alog]
+        |        |        |  +--rw hash-algo?   identityref
+        |        |        |  +--rw digest*      binary
+        |        |        +--rw event-size?     uint32
+        |        |        +--rw event-data*     uint8
+        |        +--:(ima) {ima}?
+        |        |  +--rw ima-event-logs
+        |        |     +--rw ima-event-entry* [event-number]
+        |        |        +--rw event-number               uint64
+        |        |        +--rw ima-template?              string
+        |        |        +--rw filename-hint?             string
+        |        |        +--rw filedata-hash?             binary
+        |        |        +--rw filedata-hash-algorithm?   string
+        |        |        +--rw template-hash-algorithm?   string
+        |        |        +--rw template-hash?             binary
+        |        |        +--rw pcr-index?                 pcr
+        |        |        +--rw signature?                 binary
+        |        +--:(netequip_boot) {netequip_boot}?
+        |           +--rw boot-event-logs
+        |              +--rw boot-event-entry* [event-number]
+        |                 +--rw event-number               uint64
+        |                 +--rw ima-template?              string
+        |                 +--rw filename-hint?             string
+        |                 +--rw filedata-hash?             binary
+        |                 +--rw filedata-hash-algorithm?   string
+        |                 +--rw template-hash-algorithm?   string
+        |                 +--rw template-hash?             binary
+        |                 +--rw pcr-index?                 pcr
+        |                 +--rw signature?                 binary
+        +--:(TEE-generic)
+           +--rw (token-type)?
+              +--:(cwt)
+              |  +--rw eat-header-cwt?      string
+              |  +--rw eat-payload-cwt?     string
+              |  +--rw eat-signature-cwt?   string
+              +--:(jwt)
+                 +--rw eat-header-jwt?      string
+                 +--rw eat-payload-jwt?     string
+                 +--rw eat-signature-jwt?   string
+						]]></artwork>
+					</figure>
+				</section>
+				<section title="Yang Data Model of Trust Enhanced Registration interface">
+					<t>The Yang Model of Trust Enhanced Registration Interface is shown below.</t>
+					<figure>
+						<artwork><![CDATA[
+module ietf-i2nsf-nsf-trust-enhanced-registration-interface {
+    yang-version 1.1;
+    namespace
+        "urn:ietf:params:xml:ns:yang:ietf-i2nsf-nsf-trust-enhanced-registration-interface";
+    prefix
+        nsfteri;
+    
+    import ietf-tpm-remote-attestation{
+        prefix tpm;
+    }
+    import ietf-i2nsf-nsf-trust-enhanced-monitoring{
+		prefix nsftemi;
+	}
+    organization
+        "IETF I2NSF (Interface to Network Security Functions) Working Group";
+    contact
+        "WG Web: <http://tools.ietf.org/wg/i2nsf>
+        WG List: <mailto:i2nsf@ietf.org>
+
+        Editor: Penglin Yang
+        <mailto:yangpenglin@chinamobile.com>";
+
+    description
+        "This module is a YANG module for I2NSF NSF Trust Enhanced Registration Interface.";
+ 
+    container reference-value-register{
+        description
+            "the reference value is for nsf";
+        leaf nsf-name{
+            type string;
+            mandatory true;
+            description
+                "The name of nsf";
+        }
+        leaf hardware-type{
+            mandatory true;
+            type string;
+        }
+        leaf operating-system-type{
+            mandatory true;
+            type string;
+        }
+        choice RoT-type{
+            case TPM12{
+                container tpm12-ref{
+                    uses tpm:event-logs;
+                }
+            }
+            case TPM20{
+                container tpm20-ref{
+                    uses tpm:event-logs;
+                }
+            }
+            case TEE-generic{
+                uses nsftemi:TEE-general-log;
+            }
+        }
+    }
+}				
+						]]></artwork>
+					</figure>
+				</section>
+			</section>
+		</section>
+    <section anchor="IANA" title="IANA Considerations">
+			<t>This document requests IANA to register the following URI in the "IETF XML Registry" <xref target="RFC3688">RFC&nbsp;3688</xref>: 
+				<list hangIndent="10" style="empty">
+          <t>URI: urn:ietf:params:xml:ns:yang:ietf-i2nsf-trust-enhanced-monitoring-interface
+Registrant Contact: The IESG.</t>
+					<t>XML: N/A; the requested URI is an XML namespace.</t>
+					<t>URI: urn:ietf:params:xml:ns:yang:ietf-i2nsf-trust-enhanced-registration-interface
+Registrant Contact: The IESG.</t>
+					<t>XML: N/A; the requested URI is an XML namespace.</t>
+        </list>
+			</t>
+
+			<t>This document requests IANA to register the following YANG module in the "YANG Module Names" registry <xref target="RFC7950">RFC&nbsp;7950</xref> <xref target="RFC8525">RFC&nbsp;8525</xref>: 
+				<list hangIndent="10" style="empty">
+          <t>Name: ietf-i2nsf-trsut-enhanced-monitoring-interface</t>
+					<t>Namespace: urn:ietf:params:xml:ns:yang:ietf-i2nsf-trust-enhanced-monitoring-interface</t>
+					<t>Prefix: nsftemi</t>
+					<t>Reference: RFC XXXX</t>
+					<t>Name: ietf-i2nsf-trsut-enhanced-registration-interface</t>
+					<t>Namespace: urn:ietf:params:xml:ns:yang:ietf-i2nsf-trust-enhanced-registration-interface</t>
+					<t>Prefix: nsfteri</t>
+					<t>Reference: RFC XXXX</t>
+        </list>
+			</t>
+			
+    </section>
+		
+		<section title="Security Considerations">
+			<t>This document introduces the basic architecture of trust enhanced I2NSF and designs related interfaces. Different RoT architectures have different trust ability, and the Security Controller will determine if it will trust these remote attestation results by policy rules. These policy rules are out of scope of this document. The trust enhanced interfaces need to be protected by secure channel when transmission occurs. Meanwhile, the remote attestation results in trust enhanced interfaces are protected by their own mechanisms like TPM signature or token.</t>
+		</section>
+	</middle>
+	
+	<back>
+		<references title="Normative Reference">
+			&RFC8329;
+			&I-D.ietf-rats-architecture;
+			&I-D.ietf-rats-tpm-based-network-device-attest;
+			&I-D.ietf-i2nsf-nsf-monitoring-data-model;
+			&I-D.ietf-rats-yang-tpm-charra;
+			&I-D.ietf-rats-eat;
+			&RFC7519;
+			&RFC8392;
+			&RFC3688;
+			&RFC7950;
+			&RFC8525;
+			&RFC2119;
+		</references>
+			<references title="Informative Reference">
+				
+				<reference anchor="tpm12" target="https://trustedcomputinggroup.org/resource/tpm-main-specification/">
+					<front>
+						<title>TPM Main Specification Level 2 Version 1.2, Revision 116</title>
+						
+						<author>
+							<organization>Trusted Computing Group</organization>
+						</author>
+
+						<date year="2011" month="March" />
+					</front>
+				</reference>
+				
+				<reference anchor="tpm20" target="https://trustedcomputinggroup.org/resource/tpm-library-specification/">
+					<front>
+						<title>Trusted Platform Module Library Specification, Family "2.0", Level 00, Revision 01.59</title>
+						<author>
+							<organization>Trusted Computing Group</organization>
+						</author>
+						<date year="2019" month="November" />
+					</front>
+				</reference>
+				
+				<reference anchor="TCGRoT" target="https://trustedcomputinggroup.org/wp-content/uploads/TCG_Roots_of_Trust_Specification_v0p20_PUBLIC_REVIEW.pdf">
+					<front>
+						<title>DRAFT: TCG Roots of Trust Specification</title>
+						<author>
+							<organization>Trust Computing Group</organization>
+						</author>
+						<date year="2018" month="October" />
+					</front>
+				</reference>
+				
+				<reference anchor="TEE" target="https://globalplatform.org/specs-library/tee-system-architecture-v1-2/">
+					<front>
+						<title>Global Platform Technology TEE System Architecture Version 1.2</title>
+						<author>
+							<organization>Global Platform Technology</organization>
+						</author>
+						<date year="2018" month="December" />
+					</front>
+				</reference>
+				
+				<reference anchor="SGX" target="https://www.intel.com/content/www/us/en/developer/tools/software-guard-extensions/overview.html">
+					<front>
+						<title>Overview of Intel Software Guard Extension</title>
+						<author>
+							<organization>Intel</organization>
+						</author>
+						<date year="2016" month="June" />
+					</front>
+				</reference>
+				
+		</references>
+	</back>
+</rfc>
