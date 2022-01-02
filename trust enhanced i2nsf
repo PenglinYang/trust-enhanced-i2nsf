@@ -56,89 +56,69 @@
     <!-- The abbreviated title is used in the page header - it is only necessary if the 
          full title is longer than 39 characters -->
 
-    <title abbrev="Abbreviated Title">Trust Enhanced I2NSF</title>
+    <title abbrev="Trust Enhanced I2NSF">Trust Enhanced I2NSF</title>
 
     <!-- add 'role="editor"' below for the editors if appropriate -->
 
     <!-- Another author who claims to be an editor -->
 
-    <author fullname="Penglin Yang" initials="P.Y." role="editor" surname="Yang">
+    <author fullname="Penglin Yang" initials="P." role="editor" surname="Yang">
       <organization>China Mobile</organization>
-
       <address>
         <postal>
           <street>32 Xuanwumen West Street, Xicheng District</street>
-
           <!-- Reorder these if your country does things differently -->
-
           <city>Beijing</city>
-
           <region></region>
-
           <code>100053</code>
-
           <country>China</country>
         </postal>
-
         <phone></phone>
-
         <email>yangpenglin@chinamobile.com</email>
-
         <!-- uri and facsimile elements may also be added -->
       </address>
     </author>
-	<author fullname="Meilin Chen" initials="M.C." role="editor" surname="Chen">
+		<author fullname="Meiling Chen" initials="M." role="editor" surname="Chen">
       <organization>China Mobile</organization>
-
+      <address>
+        <postal>
+          <street>32 Xuanwumen West Street, Xicheng District</street>
+          <!-- Reorder these if your country does things differently -->
+          <city>Beijing</city>
+          <region></region>
+          <code>100053</code>
+          <country>China</country>
+        </postal>
+        <phone></phone>
+				<email>chenmeiling@chinamobile.com</email>
+        <!-- uri and facsimile elements may also be added -->
+      </address>
+    </author>
+		<author fullname="Li Su" initials="L." role="editor" surname="Su">
+      <organization>China Mobile</organization>
       <address>
         <postal>
           <street>32 Xuanwumen West Street, Xicheng District</street>
 
           <!-- Reorder these if your country does things differently -->
-
           <city>Beijing</city>
-
           <region></region>
-
           <code>100053</code>
-
           <country>China</country>
         </postal>
-
         <phone></phone>
-
-        <email>chenmeiling@chinamobile.com</email>
-
-        <!-- uri and facsimile elements may also be added -->
-      </address>
-    </author>
-	<author fullname="Li Su" initials="L.S." role="editor" surname="Su">
-      <organization>China Mobile</organization>
-
-      <address>
-        <postal>
-          <street>32 Xuanwumen West Street, Xicheng District</street>
-
-          <!-- Reorder these if your country does things differently -->
-
-          <city>Beijing</city>
-
-          <region></region>
-
-          <code>100053</code>
-
-          <country>China</country>
-        </postal>
-
-        <phone></phone>
-
         <email>suli@chinamobile.com</email>
-
         <!-- uri and facsimile elements may also be added -->
       </address>
-    </author>
+		</author>
+		<author fullname="Diego Lopiz" initials="" role="editor" surname="">
+			<organization>Telofonica</organization>
+		</author >
+		<author fullname="Jaehoon Paul Jeong" initials="" role="editor" surname="">
+			<organization>University</organization>
+		</author>
 
-    <date month="December" year="2021" />
+  <date month="January" year="2022" />
 
     <!-- If the month and year are both specified and are the current ones, xml2rfc will fill 
          in the current day for you. If only the current year is specified, xml2rfc will fill 
@@ -158,7 +138,7 @@
 	 If this element is not present, the default is "Network Working Group",
          which is used by the RFC Editor as a nod to the history of the IETF. -->
 
-    <keyword>trust enhanced I2NSF</keyword>
+    <keyword>trust enhanced I2NSF, remote attestation</keyword>
 
     <!-- Keywords will be incorporated into HTML output
          files in a meta tag but they have no effect on text or nroff
@@ -166,16 +146,16 @@
          keywords will be used for the search engine. -->
 
     <abstract>
-      <t>This document describes the architecture of Trust Enhanced I2NSF. In this architecture, technologies like TPM <xref target="tpm12"></xref><xref target="tpm20"></xref> and <xref target="TCGRoT"></xref> will act as RoT (root of trust), integrity measurement and remote attestation will be used to enhance the trustworthiness of NSF. Relevant interfaces of Trust Enhanced I2NSF will also be illustrated in this document.</t>
+      <t>This document describes the architecture and interfaces of Trust Enhanced I2NSF. In this architecture remote attestation procedure will be used to appraise the NSF system and finally enhance the trustworthiness of NSF. Specific architecutre of trust enhanced I2NSF and interfaces will be designed to fit into the existing I2NSF architecture.</t>
     </abstract>
   </front>
 
   <middle>
     <section anchor="intro" title="Introduction">
-      <t>NSF is always used in remote scenarios, in which it is hard to guarantee the deployment environment is security and the NSF is properly deployed. If the deployment environment or the NSF is compromised, the behavior and the feedback of NSF cannot be trusted.</t>
-			<t>Trusted computing technology like TPM, TEE<xref target="TEE"></xref> could provide a root of trust based on hardware in deployment environment. Trusted computing hardware usually retains a pair of root key, which could be used to sign signature for the measurement of development environment and the NSF image. Then the signed result will be sent to the NSF manager to estimate if the NSF is well deployed.</t>
-			<t>The RATs architecture<xref target="I-D.ietf-rats-architecture"></xref> has defined this remote attestation process which could be introduced to I2NSF. Since the RATs architecture is a general architecture, specific interface and implementation still need to be determined in I2NSF. This draft aims to create a unified trust enhanced I2NSF architecture to promote the security of NSF</t>
-      
+      <t>NSF is always used in remote scenarios, in which it is hard to guarantee if the deployment environment is security and the NSF is properly deployed. If the deploy environment or the NSF is compromised, the behavior and the feedback of NSF cannot be trusted.</t>
+			<t>Remote attestation procedure <xref target="I-D.ietf-rats-architecture"></xref> provides an efficient mechanism that a relying party like NSF security controller could appraise if the NSF and the basic platform are trusted. The general remote attestation procedure has been defined by RATs group, however specific interfaces and implementation still need to be determined in I2NSF. This draft aims to create a unified trust enhanced I2NSF architecture to enable remote attestation and promote the security of NSF. 
+			</t>
+			<t>This document will follow the definition of I2NSF <xref target="RFC8329"></xref> and I2NSF NSF Monitoring Interface YANG Data Model <xref target="I-D.ietf-i2nsf-nsf-monitoring-data-model"></xref>, and will also keep align with RATs architecture.</t>      
     </section>
 		
 		<section anchor="term" title="Terminology">
@@ -184,6 +164,9 @@
 				<t>RoT: Root of Trust</t>
 				<t>TPM: Trusted platform module</t>
 				<t>TEE: Trust Execution Environment</t>
+				<t>RVP: Reference Value Provider</t>
+				<t>TENMI: Trust Enhanced Network Monitoring Interface</t>
+				<t>TERI: Trust Enhanced Registration Interface</t>
 			</section>
 			<section title="Requirements Language">
         <t>The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT",
@@ -195,84 +178,94 @@
 		
 		<section anchor="scope" title="Scope and Motivation">
 			<section title="Scope">
-				<t>The scope of this draft mainly focuses on the expanded interfaces of trust enhanced I2NSF. The specific of how to implement measurement or how to make remote attestation evidence is out of scope.</t>
+				<t>The scope of this document mainly focuses on the architecture and expanded interfaces of trust enhanced I2NSF. The specific of how to implement measurement or how to make remote attestation evidence is out of scope.</t>
 			</section>
 			<section title="Motivation">
-				<t>The architecture of I2NSF <xref target="RFC8329"></xref> aims to provide network security functions to network users. Often, the users are in remote environment, and the platform to deploy these network security functions may not be trusted. As a consequence, this will bring several severe threats to the NSF. The first one is malfunction of NSF. The inappropriate deployment of NSF or the defective platform will affect the process of NSF directly. The second threat is the leak of policy rules and core asset of security knowledge. If there has malware in the remote environment, it will be hard to prevent the leakage. The third threat is the potential spoofing attack to the NSF architecture. Adversary could use the compromised NSF to feedback spoofing information or other attacking information to attack or penetrate the NSF architecture. </t>
-				<t>The solution of these threats is also straight, which is using remote attestation to make sure the remote platform is trusted and the NSF is well deployed. The RATs group in IETF defines architecture and some specifications of remote attestation procedure. However brings the RATs in I2NSF still needs some work. First, need to define the trsut enhanced architecture. Second, need to refer the appropriate specifications defined in RATs to create trust enhanced NSF interfaces. Third, need to cover the heterogeneous architecture of specific trust architecture like TPM and TEE.</t>
+				<t>The architecture of I2NSF aims to provide network security functions to network users. Often, the users are in remote environment and the platform to deploy these network security functions may not be trusted. As a consequence, this will bring several severe threats to the NSF. 
+				
+				The first threat is malfunction of NSF. The inappropriate deployment of NSF or the defective platform in wheree runs NSF will affect the behaviour of NSF directly. 
+				
+				The second threat is the leak of digital asset like policy rules and security intelligence, which is provided from the security controller. If the remote environment is malicious, it will be hard to prevent the leakage. Consider a secuiry company provides NSF in where contains lots of policy rules such as DDoS prevention, traffic filter, AI module, etc. If the platform who carrys the NSF is malicious, it could steal this digital asset for other rivals or attackers.  
+				
+				The third threat is the potential spoofing attack to the NSF architecture. Adversary could use the compromised NSF to feedback spoofing information or other attacking information to attack or penetrate the NSF architecture. The attackers in platfom could also disturb the action of NSF, and feedback the fake notification or event to security controller.</t>
+
+				
+				<t>The solution of these threats is also straight, which is using remote attestation to make sure the remote platform is trusted and the NSF is well deployed. While it is true that any environment is vulnerable to malicious activity with full physical access (and this is obviously beyond the scope of this document), the application of attestation mechanisms raises the degree of physical control necessary to perform an untraceable malicious modification of the environment.</t>
+
+				<t>When designing trust enhanced I2NSF, three aspects need to be considered. First, determine the trsut enhanced architecture. Second, refer to the appropriate specifications defined in RATs to create trust enhanced NSF interfaces. Third, cover the heterogeneity architecture of specific trust architecture like TPM and TEE.</t>
 			</section>
 		</section>
 		
 		<section anchor="information_model" title="Information Model">
 			<section title="Architecture of Trust Enhanced I2NSF">
-				<figure align="center" anchor="xml_happy" title="architecture of Trust Enhanced I2NSF">
+				<figure align="center" anchor="architecture" title="architecture of Trust Enhanced I2NSF">
 					<artwork align="center"><![CDATA[
-+--------------+                         +--------------+
-|              |                         |              |
-|   NSF User   |           +-------------+   Endorser   |
-|              |           |             |              |
-+------+-------+           |             +--------------+
-       |                   |
-       |                   |
-       +-------------------+
-       |
-       |
-+------+-------+                         +--------------+
-|              |                         |              |
-|   Security   +-------------------------+  Developer's |
-|  Controller  |                         |  Mgnt System |
-+-+----------+-+                         +-+----------+-+
-  | Verifier/|                             | Reference|
-  | Relying  |                             |   Value  |
-  | Party    |                             | Provider |
-  +----+-----+                             +----------+
-       |
-       |
-       +-------------------+---------------------+
-       |                   |                     |
-+------+-------+    +------+-------+      +------+-------+
-|              |    |              |      |              |
-|     NSF1     +    |     NSF2     |      |     NSFn     |
-|              |    |              |      |              |
-+--+--------+--+    +--+--------+--+      +--+--------+--+
-   |   RoT  |          |   RoT  |            |   RoT  |
-   |        |          |        |            |        |
-   +--------+          +--------+            +--------+
++------------+                 +------------+
+|            |                 |            |
+|  NSF User  |       +---------+  Endorser  |
+|            |       |         |            |
++---+--------+       |         +------------+
+    |                |
+    |      +---------+
+    |      |
++---+------+---+              +--------------+
+|              |              |              |
+|   Security   +--------------+  Developer's |
+|  Controller  |              |  Mgmt System |
++-+----------+-+              +-+----------+-+
+  | Verifier/|                  | Reference|
+  | Relying  |                  |   Value  |
+  | Party    |                  | Provider/|
+	+----+-----+                  | Interface|
+       |                        +----------+   
+       +---------------------+
+       |                     |
++------+-------+      +------+-------+
+|              |      |              |
+|     NSF1     +      |     NSFn     |
+|              |      |              |
++--+--------+--+      +--+--------+--+
+   |   RoT  |            |   RoT  |
+   +--------+            +--------+
             ]]></artwork>
 				</figure>
-				<t>As shown in figure one is the trust enhanced I2NSF architecture. In this architecture, several new components are introduced to NSF. The first component is RoT which is deployed in the hardware platform of NSF. The second component is Verifier/Relying Party, which is deployed as part of Security Controller. This component is in charge of verifying if the attestation value is complied with the reference value. The third component is the Reference Value Provider, which will bring the reference value of NSF image and deployment environment to Security Controller. The fourth component is Endorser, which will provie the endorsement of RoT. And the verifier could use Endorser to verify the endorsement status of RoT.</t>
+				<t>As shown in figure one is the trust enhanced I2NSF architecture. In this architecture, several new components are introduced to NSF. The first component is RoT which is deployed in the basic platform of NSF as a hardware. The second component is Verifier/Relying Party, which is deployed as part of Security Controller. This component is in charge of verifying if the attestation evidence is complied with the reference value. The third component is the Reference Value Provider, which will bring the reference value of NSF image and deployment environment to Security Controller. In some conditions, the RVP could be some other  venders like a blockchain, a third parity security provider. So the RVP component may be an interface that receive RVP form the third party. And this interface is out of scope of this document. The fourth component is Endorser, which will provie the endorsement of RoT. And the verifier could use Endorser to verify the endorsement status of RoT.</t>
 			</section>
 			
 			<section title="Root of Trust">
-				<t>Root of Trust is a hardware-based component that could provide information and certain function that cannot be stolen, tampered, or repudiation. RoT MUST be deployed in the NSF hardware platform. The NSF with RoT composes the rule of attester.</t>
-				<t>The architecture of specific RoT is out of scope of this document. But in order to clarify RoT more clearly, the following segment uses TPM as an example to illustrate. TPM keeps EK(Endorsement Key ) to identify its identity. EK is an asymmetric key pair, which will never expose its secret key to public. TPM also derives certain AIKs(Attestation Identity Key) from EK to avoid the exposure of TPM&apos;s real identity(EK). Meanwhile, TPM contains a reference Hash value of the boot component of platform. When launching a remote attestation procedure, the TPM will first measure the boot component of platform. Based on the trust policy the TPM will choose if trust the boot component and transfer the system control to the boot component. The boot component then will measure the operating system kernel and compare it to the reference value, and so on. During this trusted measurement process, the TPM will record the measurement Hash result in a series of registers called PCRs. If a remote attestation procedure is initiated, the measurement Hash result will be signed by AIK. In the end, remote attestation procedure will send this signed Hash result and measurement result to the verifier. The specific procedure could refer to<xref target="I-D.ietf-rats-tpm-based-network-device-attest"></xref>, which illustrates how integrity verification works inside a device.</t>
+				<t>Root of Trust is a hardware-based component that could provide endorsement information and relevant functions that cannot be stolen, tampered, or repudiated. RoT MUST be deployed in the basic hardware platform of NSF. Technologies like <xref target="TCGRoT"></xref> and <xref target="TEE"></xref> could act as RoT.</t>
+				<t>The architecture of specific RoT is out of scope of this document. But in order to elaborate RoT more clearly, the following segment uses TPM  <xref target="tpm12"></xref><xref target="tpm20"></xref> as an example to illustrate. TPM keeps EK(Endorsement Key) to identify its identity. EK is an asymmetric key pair, which will never expose its secret key to public. TPM also derives certain AIKs(Attestation Identity Key) from EK to avoid the exposure of TPM&apos;s real identity(EK) during remote attestation. During the booting period, the TPM will record the Hash of measurement of bootloader, OS kernel and applications to a series of PCRs (Platform Configuration Registers), which cannot be tampered. If a remote attestation procedure is initiated, the PCR value will be signed by AIK and send to the verifier for appraising. The specific procedures are based on<xref target="I-D.ietf-rats-tpm-based-network-device-attest"></xref>, which illustrates how integrity verification works inside a network device.</t>
 			</section>
 			
 			<section title="Verifier/Relying Party">
-				<t>The Verifier/Relying Party is deployed in Security Controller. In the original architecture of RATs, Verifier and Relying Party could be different components. Verifier is in charge of verifying the remote attestation results from attester. The Relying Party is in charge of appraising the verification result from Verifier. This means that the Relying Party does not have to know the detail of remote attestation result and could only focus on the final verification result and make policies. While in NSF, both the role of Verifier and Relying Party will be included in Security Controller to reduce the complexity.</t>
+				<t>The Verifier/Relying Party is deployed in Security Controller. In the original architecture of RATs, Verifier and Relying Party could be different components. Verifier is in charge of verifying the remote attestation evidence from attester. The Relying Party is in charge of appraising the attestation result from Verifier. This indicates that the Relying Party does not have to know the detail of remote attestation evidence and could only focus on the final attestation result and make policies. While in NSF, both the role of Verifier and Relying Party will be included in Security Controller to reduce the redundancy of system.</t>
 			</section>
 			
 			<section title="Reference Value Provider">
-				<t>The Developer&apos;s Mgnt System is in charge of providing reference value of NSF and the deployment platform. The reference value will be conveyed to Security Controller as the benchmark when verifying remote attestation value from attester.</t>
+				<t>The Developer&apos;s Mgmt System is in charge of providing reference value of NSF and the deployment platform. The reference value will be conveyed to Security Controller as the benchmark when verifying remote attestation evidence from attester. When the reference value needs to be collected by third party, the Reference Value Interface or other out-of-band methods in Developer&apos;s Mgmt System will be used.</t>
 			</section>
 			
 			<section title="Endorser">
-				<t>The Endorser is in charge of providing endorsement to RoT, both EK and AIK are related to Endorser. The communication between RoT and Endorser is out of scope of this document, but the Security Controller needs to communicate with Endorser to verify remote attestation message.</t>
+				<t>The Endorser is in charge of providing endorsement to RoT. For example, both EK and AIK in TPM are endorsed by Endorser. The communication between RoT and Endorser is based on specific RoT hardware, and usually has been setup during manufactureing. The Security Controller also needs to communicate with Endorser to get the endorsement of RoT before appraising attestation evidence.</t>
 			</section>
 			
 		</section>
 
 		<section anchor="data_model" title="Data Model of Trust Enhanced I2NSF">
-			<t>Two interfaces are involved in trust enhanced I2NSF, Trust Enhanced NSF Monitoring Interface and Trust Enhanced Registration Interface.</t>
+			<t>Based on the trust enhanced architecture, the relevant interfaces are TENMI (Trust Enhanced NSF Monitoring Interface) and TERI (Trust Enhanced Registration Interface). The following document will depicit the Yang tree diagram and Yang data model of these two interfaces.</t>
 			
-			<section title="Trust Enhanced NSF Monitoring interface">
-				<t>The TENMI (Trust Enhanced NSF Monitoring Interface) focuses on the remote attestation procedure between NSF and security controller. This interface will be an extended feature of NSF Monitoring Interface and will fully comply with NSF Monitoring Interface<xref target="I-D.ietf-i2nsf-nsf-monitoring-data-model"></xref>. Based on the information transmission type, the TENMI has three Yang types: system events, system logs and RPC. The system event is responsible for the NSF event that will trigger the remote attestation of NSF. And the event could be platform booting, measurement result change, NSF deploy, etc. The system logs is responsible for the periodic remote attestation. The third type is RPC in where the Verifier (Security Controller) will challenge the attester (NSF) for its trustworthiness initiatively. </t>
-				<t>At present, the RoT type now are split in two category, one is TPM-based and the other is general TEE-based like Trust Zone. It can be expected that other trsuted computing architectures like Intel SGX <xref target="SGX"></xref> may also be involved in the near future. And also the TPM-based RoT is split in TPM12 and TPM20 versions respectively. When design this interface with TPM-based RoT, this document tries to refer to the existing document<xref target="I-D.ietf-rats-yang-tpm-charra"></xref> as much as possible to avoid unnecessary alignment work. And about the general TEE-based RoT, this document refers to the EAT document<xref target="I-D.ietf-rats-eat"></xref> and uses string type to express JWT<xref target="RFC7519"></xref>or CWT <xref target="RFC8392"></xref>.</t>
+			<section title="Trust Enhanced NSF Monitoring Interface">
+				<t>The NSF Monitoring Interface is used to transfer extended monitoring information about the nsf and the hardware platform, like the system event, NSF event, etc. Remote attestation evidence in NSF could also be treated as an extended monitoring information. 
 				
-					<section  title="Yang Tree Diagram of Trust Enhanced NSF Monitoring Interface">
-						<t>The Yang tree of Trust Enhanced NSF Monitoring Interface is shown below.</t>
-						<figure>
-							<artwork><![CDATA[
+				And the TENMI focuses on the remote attestation procedure between NSF and security controller. This interface will be an extended feature of NSF Monitoring Interface <xref target="I-D.ietf-i2nsf-nsf-monitoring-data-model"></xref> and will fully comply with it. 
+				
+				Based on the NSF Monitoring Interface event type, the TENMI defines three Yang types for remote attestation: system events, system logs and RPC. The system event is representative of the events that will trigger the remote attestation of NSF, like platform booting, measurement result change, NSF deploy, etc. The system logs is representative of the periodic remote attestation activity. The third type is RPC in where the Verifier (Security Controller) will initiatively challenge the attester (NSF) for its trustworthiness. </t>
+				<t>At present, the RoT type now have two categories, one is TPM-based and the other is general TEE-based like Trust Zone. It can be expected that other trsuted computing architectures like Intel SGX <xref target="SGX"></xref> may also be involved in the near future. And also the TPM-based RoT is split in TPM12 and TPM20 versions respectively. When design this interface with TPM-based RoT, this document tries to refer to the existing document<xref target="I-D.ietf-rats-yang-tpm-charra"></xref> as much as possible to avoid unnecessary alignment work. And about the general TEE-based RoT, this document refers to the EAT document<xref target="I-D.ietf-rats-eat"></xref> and uses string format to express JWT<xref target="RFC7519"></xref>or CWT <xref target="RFC8392"></xref>.</t>
+				
+				<section  title="Yang Tree Diagram of Trust Enhanced NSF Monitoring Interface">
+					<t>The Yang tree of Trust Enhanced NSF Monitoring Interface is shown below.</t>
+					<figure>
+						<artwork><![CDATA[
 module: ietf-i2nsf-nsf-trust-enhanced-monitoring
   rpcs:
     +---x nsf-challenge-response-attestation
@@ -525,281 +518,277 @@ module: ietf-i2nsf-nsf-trust-enhanced-monitoring
                    +--ro eat-payload-jwt?     string
                    +--ro eat-signature-jwt?   string							
 							]]></artwork>
-						</figure>
-					</section>
+					</figure>
+				</section>
 					
 					
-					<section title="Yang Data Model of Trust Enhanced NSF Monitoring Interface">
-						<t>The Yang Model of Trust Enhanced NSF Monitoring Interface is shown below.</t>
-						<figure>
-							<artwork><![CDATA[
-module ietf-i2nsf-nsf-trust-enhanced-monitoring {
-    yang-version 1.1;
-    namespace
-        "urn:ietf:params:xml:ns:yang:ietf-i2nsf-nsf-trust-enhanced-monitoring";
-    prefix
-        nsftemi;
-    import ietf-i2nsf-nsf-monitoring{
-        prefix nsfmi;
-        reference
-            "reference of nsf monitoring interface";
-    }
-    import ietf-tcg-algs{
-        prefix taa;
-    }
-    import ietf-tpm-remote-attestation{
-        prefix tpm;
-    }
-    organization
-        "IETF I2NSF (Interface to Network Security Functions) Working Group";
-    contact
-        "WG Web: <http://tools.ietf.org/wg/i2nsf>
-        WG List: <mailto:i2nsf@ietf.org>
+				<section title="Yang Data Model of Trust Enhanced NSF Monitoring Interface">
+					<t>The Yang Model of Trust Enhanced NSF Monitoring Interface is shown below.</t>
+					<figure>
+						<artwork><![CDATA[
+module ietf-i2nsf-nsf-trust-enhanced-monitoring{
+  yang-version 1.1;
+  namespace
+    "urn:ietf:params:xml:ns:yang:ietf-i2nsf-nsf-trust-enhanced-monitoring";
+  prefix
+    nsftemi;
+  import ietf-i2nsf-nsf-monitoring{
+    prefix nsfmi;
+    reference
+      "reference of nsf monitoring interface";
+  }
+  import ietf-tcg-algs{
+    prefix taa;
+  }
+  import ietf-tpm-remote-attestation{
+    prefix tpm;
+  }
+  organization
+    "IETF I2NSF (Interface to Network Security Functions) Working Group";
+  contact
+    "WG Web: <http://tools.ietf.org/wg/i2nsf>
+    WG List: <mailto:i2nsf@ietf.org>
+    Editor: Penglin Yang
+      <mailto:yangpenglin@chinamobile.com>";
+  description
+    "This module is a YANG module for I2NSF NSF Trust Enhanced Monitoring Interface.";
 
-        Editor: Penglin Yang
-        <mailto:yangpenglin@chinamobile.com>";
-
+  identity RoT-type{
     description
-        "This module is a YANG module for I2NSF NSF Trust Enhanced Monitoring.";
-        
-    identity RoT-type{
-        description
-            "RoT have different types, like TPM, TEE, SGX, etc.";
-    }    
-    identity certificate-name-ref{
+      "RoT have different types, like TPM, TEE, SGX, etc.";
+  }
+  identity certificate-name-ref{
 		description
-			"refer to tpm";
+			"TPM based variant";
 	}
-	identity TPM12{
-		description
-			"RoT type is TPM1.2";
-	}
-	identity TPM20{
-		description
-			"RoT type is TPM2.0";
-	}
-	identity TEE-general{
-		description
-			"RoT type is TEE general";
-	}
-	identity cwt{
-		description
-			"cbor web token for remote attestation";
-	}
-	identity jwt{
-		description
-			"json web token for remote attestation";
-	}
-        
-    grouping nsf-remote-attestation{
-        choice RoT-type{
-            case TPM12{
-				container tpm12-nsf-rats{
-                	if-feature "taa:tpm12";
-                	description
-                      "since this message was triggered by event, so there is no input 
-                      from RPC. The pcr value is provided by device automatically, the
-                      nonce value NEED to be replaced by the event time";
-	            	uses tpm:certificate-name-ref;
-					uses tpm:tpm12-attestation;
-				}    
-            }
-            case TPM20{
-				container tpm20-nsf-rats{
-                	if-feature "taa:tpm20";
-                	description
-                      "since this message was triggered by event, so there is no input 
-                      from RPC. The pcr value is provided by device automatically, the
-                      nonce value NEED to be repalced by the event time";
-                	uses tpm:certificate-name-ref;
-					uses tpm:tpm20-attestation;
-				}
-            }            
-            case TEE-general{
-                description
-                    "if the RoT is not TPM, or not specify the detail format, then uses
-                    EAT as the reference of the attestation result at present. The 
-                    information includes: token-id; time-stamp; nonce; hardware-version; 
-                    software-description-version; security-level-claim; secure-boot-claim;
-                    including-keys; location-claim; uptime-claim; boot-seed-claim;
-                    intended-use-claim; profile-claim; software-manifest-claim; 
-                    software-evidence-claim";
-               	//how describe cwt or jwt in Yang, string?
-				choice token-type{
-                    case cwt{
-                        leaf eat-header-cwt{
-                            type string;
-                        }
-                        leaf eat-payload-cwt{
-                            type string;
-                        }
-                        leaf eat-signature-cwt{
-                            type string;
-                        }
-                    }
-                    case jwt{
-                        leaf eat-header-jwt{
-                            type string;
-                        }
-                        leaf eat-payload-jwt{
-                            type string;
-                        }
-                        leaf eat-signature-jwt{
-                            type string;
-                        }
-                    }
-                }
-            }
+  identity TPM12{
+    description
+      "RoT type is TPM1.2";
+  }
+  identity TPM20{
+    description
+      "RoT type is TPM2.0";
+  }
+  identity TEE-general{
+    description
+      "RoT type is TEE";
+  }
+  identity cwt{
+    description
+      "cbor web token for remote attestation";
+  }
+  identity jwt{
+    description
+      "json web token for remote attestation";
+  }
+ 
+  grouping nsf-remote-attestation{
+    choice RoT-type{
+      case TPM12{
+        container tpm12-nsf-rats{
+          if-feature "taa:tpm12";
+					description
+            "since this message was triggered by event, there is no input 
+            from RPC. The pcr value is provided by device automatically, the
+            nonce value NEED to be replaced by the event time";
+          uses tpm:certificate-name-ref;
+          uses tpm:tpm12-attestation;
+        }    
+      }
+      case TPM20{
+        container tpm20-nsf-rats{
+          if-feature "taa:tpm20";
+          description
+            "since this message was triggered by event, there is no input 
+            from RPC. The pcr value is provided by device automatically, the
+            nonce value NEED to be repalced by the event time";
+          uses tpm:certificate-name-ref;
+          uses tpm:tpm20-attestation;
         }
-    }    
-    grouping TEE-general-log{
+      }            
+      case TEE-general{
         description
-            "describe the TEE general log.";
+          "if the RoT is TEE, then uses EAT as the reference of the attestation
+          result. The information includes: token-id; time-stamp; nonce; 
+          hardware-version; software-description-version; security-level-claim;
+          secure-boot-claim; including-keys; location-claim; uptime-claim; 
+          boot-seed-claim; intended-use-claim; profile-claim; software-manifest-claim; 
+          software-evidence-claim";
+          //how describe cwt or jwt in Yang, string?
         choice token-type{
-        	case cwt{
-            	leaf eat-header-cwt{
-                	type string;
-                }
-                leaf eat-payload-cwt{
-                	type string;
-                }
-                leaf eat-signature-cwt{
-                	type string;
-                }
+          case cwt{
+            leaf eat-header-cwt{
+              type string;
             }
-            case jwt{
-            	leaf eat-header-jwt{
-                	type string;
-                }
-                leaf eat-payload-jwt{
-                	type string;
-                }
-                leaf eat-signature-jwt{
-                	type string;
-                }
+            leaf eat-payload-cwt{
+              type string;
             }
+            leaf eat-signature-cwt{
+              type string;
+            }
+          }
+          case jwt{
+            leaf eat-header-jwt{
+              type string;
+            }
+            leaf eat-payload-jwt{
+              type string;
+            }
+            leaf eat-signature-jwt{
+              type string;
+            }
+          }
         }
-	}
-    
-    grouping remote-attestation-log{
-        description
-            "describe different kind of log";
-        choice RoT-type{
-            case TPM12{
-                description
-                    "log recorded under the rule of TPM12";
-				container tpm12-log{
-					uses tpm:tpm-name;
-					uses tpm:node-uptime;
-					uses tpm:event-logs;
-				}
-            }
-            case TPM20{
-                description
-                    "log recorded under the rule of TPM20";
-                container tpm20-log{
-					uses tpm:tpm-name;
-					uses tpm:node-uptime;
-					uses tpm:event-logs;
-				}               
-            }
-            case TEE-general{
-                description
-                    "log recorded under the rule of EAT";
-                uses TEE-general-log;        
-            }
-        }
+      }
     }
-    
-    notification i2nsf-trust-enhanced-event{
-        description
-            "Notification for I2NSF trust enhanced Event.";
+  }    
+  grouping TEE-general-log{
+    description
+      "describe the TEE general log.";
+    choice token-type{
+      case cwt{
+        leaf eat-header-cwt{
+          type string;
+        }
+        leaf eat-payload-cwt{
+          type string;
+        }
+        leaf eat-signature-cwt{
+          type string;
+        }
+      }
+      case jwt{
+        leaf eat-header-jwt{
+          type string;
+        }
+        leaf eat-payload-jwt{
+          type string;
+        }
+        leaf eat-signature-jwt{
+          type string;
+        }
+      }
+    }
+  }
 
-        leaf hardware-type{
-            mandatory true;
-            type string;
-        }
-        leaf operating-system-type{
-            mandatory true;
-            type string;
-        }
-        uses nsfmi:characteristics;
-        uses nsfmi:i2nsf-system-event-type-content; 
-        uses nsfmi:common-monitoring-data; 
-        uses nsftemi:nsf-remote-attestation;
-    }
-       
-    notification i2nsf-trsut-enhanced-log{
-        description 
-            "This notification is for integrity measurement log, 
-						which does not have to be responsed immediately";
-        uses nsfmi:common-monitoring-data;
-        uses remote-attestation-log; 
-    }
-    
-    rpc nsf-challenge-response-attestation{
+  grouping remote-attestation-log{
+    description
+      "describe different kind of log";
+    choice RoT-type{
+      case TPM12{
         description
-            "this is the unified rpc for trust enhanced nsf";
-        input{
-            choice RoT-type{
-                case TPM12{
-                    container tpm12-rpc{
-						uses tpm:tpm12-pcr-selection;
-                    	uses tpm:nonce;
-                    	leaf-list certificate-name {
-                        	if-feature "tpm:tpms";
-                        	type tpm:certificate-name-ref;
-                        	must "/tpm:rats-support-structures/tpm:tpms"
-                            	+ "/tpm:tpm[tpm:firmware-version='taa:tpm12']"
-                            	+ "/tpm:certificates/"
-                            	+ "/tpm:certificate[name=current()]" {
-                            	error-message "Not an available TPM1.2 AIK certificate.";
-                        	}
-                        	description
-                           		"When populated, the RPC will only get a Quote for the
-                        	    TPMs associated with these certificate(s).";
-                    	}
-					}
-                }
-                case TPM20{
-					container tpm20-pcr{
-                    	uses tpm:nonce;
-                    	uses tpm:tpm20-pcr-selection;
-                    	leaf-list certificate-name {
-                        	if-feature "tpm:tpms";
-                        	type tpm:certificate-name-ref;
-                        	must "/tpm:rats-support-structures/tpm:tpms"
-                            	+ "/tpm:tpm[tpm:firmware-version='taa:tpm20']"
-                            	+ "/tpm:certificates/"
-                            	+ "/tpm:certificate[name=current()]" {
-                            	error-message "Not an available TPM2.0 AIK certificate.";
-                        	}
-                    	description
-                        	"When populated, the RPC will only get a Quote for the
-                        	TPMs associated with the certificates.";
-                    	}
-					}
-                }
-                case TEE-general{
-                    description
-                        "there is no standard to reference";
-                    leaf nonce{
-                        type binary;
-                    }
-                    leaf certificate-name{
-                        type string;
-                    }    
-                }
-            }
+          "log recorded under the rule of TPM12";
+        container tpm12-log{
+          uses tpm:tpm-name;
+          uses tpm:node-uptime;
+          uses tpm:event-logs;
         }
-        output{
-            uses remote-attestation-log;
-        }
+      }
+      case TPM20{
+        description
+          "log recorded under the rule of TPM20";
+        container tpm20-log{
+          uses tpm:tpm-name;
+          uses tpm:node-uptime;
+          uses tpm:event-logs;
+        }               
+      }
+      case TEE-general{
+        description
+          "log recorded under the rule of EAT";
+        uses TEE-general-log;        
+      }
     }
+  }
+
+  notification i2nsf-trust-enhanced-event{
+    description
+      "Notification for I2NSF trust enhanced Event.";
+    leaf hardware-type{
+      mandatory true;
+      type string;
+    }
+    leaf operating-system-type{
+      mandatory true;
+      type string;
+    }
+    uses nsfmi:characteristics;
+    uses nsfmi:i2nsf-system-event-type-content; 
+    uses nsfmi:common-monitoring-data; 
+    uses nsftemi:nsf-remote-attestation;
+  }
+ 
+  notification i2nsf-trsut-enhanced-log{
+    description 
+      "This notification is for integrity measurement log, 
+      which does not have to be responsed immediately";
+    uses nsfmi:common-monitoring-data;
+    uses remote-attestation-log; 
+  }
+ 
+  rpc nsf-challenge-response-attestation{
+    description
+      "this is the unified rpc for trust enhanced nsf";
+    input{
+      choice RoT-type{
+        case TPM12{
+          container tpm12-rpc{
+            uses tpm:tpm12-pcr-selection;
+            uses tpm:nonce;
+            leaf-list certificate-name {
+              if-feature "tpm:tpms";
+              type tpm:certificate-name-ref;
+              must "/tpm:rats-support-structures/tpm:tpms"
+                + "/tpm:tpm[tpm:firmware-version='taa:tpm12']"
+                + "/tpm:certificates/"
+                + "/tpm:certificate[name=current()]" {
+                error-message "Not an available TPM1.2 AIK certificate.";
+                }
+              description
+                "When populated, the RPC will only get a Quote for the
+                TPMs associated with these certificate(s).";
+            }
+          }
+        }
+        case TPM20{
+          container tpm20-pcr{
+            uses tpm:nonce;
+            uses tpm:tpm20-pcr-selection;
+            leaf-list certificate-name {
+              if-feature "tpm:tpms";
+              type tpm:certificate-name-ref;
+              must "/tpm:rats-support-structures/tpm:tpms"
+                + "/tpm:tpm[tpm:firmware-version='taa:tpm20']"
+                + "/tpm:certificates/"
+                + "/tpm:certificate[name=current()]" {
+                error-message "Not an available TPM2.0 AIK certificate.";
+              }
+              description
+                "When populated, the RPC will only get a Quote for the
+                TPMs associated with the certificates.";
+            }
+          }
+        }
+        case TEE-general{
+          description
+            "there is no standard to reference";
+          leaf nonce{
+            type binary;
+          }
+          leaf certificate-name{
+            type string;
+          }    
+        }
+      }
+    }
+    output{
+      uses remote-attestation-log;
+    }
+  }
 } 				
-							]]></artwork>
-						</figure>
-					</section>
+						]]></artwork>
+					</figure>
+				</section>
 			</section>
 			
 			<section title="Trust Enhanced Registration interface">
@@ -903,67 +892,63 @@ module: ietf-i2nsf-nsf-trust-enhanced-registration-interface
 					</figure>
 				</section>
 				<section title="Yang Data Model of Trust Enhanced Registration interface">
-					<t>The Yang Model of Trust Enhanced Registration Interface is shown below.</t>
+					<t>The Yang Model of Trust Enhanced Registration Interface is shown below. The registration information will refer to the system logs of remote attestation. The log infomation contains all the information needed by Security Controller to apparaise attester's evidence.</t>
 					<figure>
 						<artwork><![CDATA[
 module ietf-i2nsf-nsf-trust-enhanced-registration-interface {
-    yang-version 1.1;
-    namespace
-        "urn:ietf:params:xml:ns:yang:ietf-i2nsf-nsf-trust-enhanced-registration-interface";
-    prefix
-        nsfteri;
-    
-    import ietf-tpm-remote-attestation{
-        prefix tpm;
-    }
-    import ietf-i2nsf-nsf-trust-enhanced-monitoring{
-		prefix nsftemi;
-	}
-    organization
-        "IETF I2NSF (Interface to Network Security Functions) Working Group";
-    contact
-        "WG Web: <http://tools.ietf.org/wg/i2nsf>
-        WG List: <mailto:i2nsf@ietf.org>
-
-        Editor: Penglin Yang
-        <mailto:yangpenglin@chinamobile.com>";
-
+  yang version 1.1;
+  namespace
+    "urn:ietf:params:xml:ns:yang:ietf-i2nsf-nsf-trust-enhanced-registration-interface";
+  prefix
+    nsfteri;
+  import ietf-tpm-remote-attestation{
+    prefix tpm;
+  }
+  import ietf-i2nsf-nsf-trust-enhanced-monitoring{
+    prefix nsftemi;
+  }
+  organization
+    "IETF I2NSF (Interface to Network Security Functions) Working Group";
+  contact
+    "WG Web: <http://tools.ietf.org/wg/i2nsf>
+    WG List: <mailto:i2nsf@ietf.org>
+  Editor: Penglin Yang
+    <mailto:yangpenglin@chinamobile.com>";
+  description
+    "This module is a YANG module for I2NSF NSF Trust Enhanced Registration Interface.";
+  container reference-value-registration{
     description
-        "This module is a YANG module for I2NSF NSF Trust Enhanced Registration Interface.";
- 
-    container reference-value-register{
-        description
-            "the reference value is for nsf";
-        leaf nsf-name{
-            type string;
-            mandatory true;
-            description
-                "The name of nsf";
-        }
-        leaf hardware-type{
-            mandatory true;
-            type string;
-        }
-        leaf operating-system-type{
-            mandatory true;
-            type string;
-        }
-        choice RoT-type{
-            case TPM12{
-                container tpm12-ref{
-                    uses tpm:event-logs;
-                }
-            }
-            case TPM20{
-                container tpm20-ref{
-                    uses tpm:event-logs;
-                }
-            }
-            case TEE-generic{
-                uses nsftemi:TEE-general-log;
-            }
-        }
+      "the reference value is for nsf";
+    leaf nsf-name{
+      type string;
+      mandatory true;
+      description
+        "The name of nsf";
+  }
+    leaf hardware-type{
+      mandatory true;
+      type string;
+  }
+    leaf operating-system-type{
+      mandatory true;
+      type string;
     }
+    choice RoT-type{
+      case TPM12{
+        container tpm12-ref{
+          uses tpm:event-logs;
+        }
+      }
+      case TPM20{
+        container tpm20-ref{
+          uses tpm:event-logs;
+        }
+      }
+      case TEE-generic{
+        uses nsftemi:TEE-general-log;
+      }
+    }
+  }
 }				
 						]]></artwork>
 					</figure>
@@ -973,10 +958,10 @@ module ietf-i2nsf-nsf-trust-enhanced-registration-interface {
     <section anchor="IANA" title="IANA Considerations">
 			<t>This document requests IANA to register the following URI in the "IETF XML Registry" <xref target="RFC3688">RFC&nbsp;3688</xref>: 
 				<list hangIndent="10" style="empty">
-          <t>URI: urn:ietf:params:xml:ns:yang:ietf-i2nsf-trust-enhanced-monitoring-interface
+          <t>URI: urn:ietf:params:xml:ns:yang:ietf-i2nsf-trust-enhanced-monitoring
 Registrant Contact: The IESG.</t>
 					<t>XML: N/A; the requested URI is an XML namespace.</t>
-					<t>URI: urn:ietf:params:xml:ns:yang:ietf-i2nsf-trust-enhanced-registration-interface
+					<t>URI: urn:ietf:params:xml:ns:yang:ietf-i2nsf-trust-enhanced-registration
 Registrant Contact: The IESG.</t>
 					<t>XML: N/A; the requested URI is an XML namespace.</t>
         </list>
@@ -985,11 +970,11 @@ Registrant Contact: The IESG.</t>
 			<t>This document requests IANA to register the following YANG module in the "YANG Module Names" registry <xref target="RFC7950">RFC&nbsp;7950</xref> <xref target="RFC8525">RFC&nbsp;8525</xref>: 
 				<list hangIndent="10" style="empty">
           <t>Name: ietf-i2nsf-trsut-enhanced-monitoring-interface</t>
-					<t>Namespace: urn:ietf:params:xml:ns:yang:ietf-i2nsf-trust-enhanced-monitoring-interface</t>
+					<t>Namespace: urn:ietf:params:xml:ns:yang:ietf-i2nsf-trust-enhanced-monitoring</t>
 					<t>Prefix: nsftemi</t>
 					<t>Reference: RFC XXXX</t>
 					<t>Name: ietf-i2nsf-trsut-enhanced-registration-interface</t>
-					<t>Namespace: urn:ietf:params:xml:ns:yang:ietf-i2nsf-trust-enhanced-registration-interface</t>
+					<t>Namespace: urn:ietf:params:xml:ns:yang:ietf-i2nsf-trust-enhanced-registration</t>
 					<t>Prefix: nsfteri</t>
 					<t>Reference: RFC XXXX</t>
         </list>
@@ -998,7 +983,7 @@ Registrant Contact: The IESG.</t>
     </section>
 		
 		<section title="Security Considerations">
-			<t>This document introduces the basic architecture of trust enhanced I2NSF and designs related interfaces. Different RoT architectures have different trust ability, and the Security Controller will determine if it will trust these remote attestation results by policy rules. These policy rules are out of scope of this document. The trust enhanced interfaces need to be protected by secure channel when transmission occurs. Meanwhile, the remote attestation results in trust enhanced interfaces are protected by their own mechanisms like TPM signature or token.</t>
+			<t>This document introduces the architecture of trust enhanced I2NSF and designs related interfaces. Different RoT architectures have different trust ability and different appearance. Security Controller will determine if it will trust these remote attestation results by customized policy rules. The trust enhanced interfaces need to be protected by secure channel when transmission occurs. Meanwhile, the remote attestation results in trust enhanced interfaces are protected by their own mechanisms like TPM signature or token.</t>
 		</section>
 	</middle>
 	
